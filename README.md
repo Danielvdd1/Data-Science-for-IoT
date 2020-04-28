@@ -1,13 +1,26 @@
 # TV-uitzetter
-Data Science for IoT project
+Ooit weleens thuisgekomen en erachter gekomen dat de TV de hele dag aan heeft gestaan? Bij mij thuis gebeurt dat heel vaak. Voor het keuzevak Data Science for IoT moest er een creatief project bedacht worden met een IoT data-pipeline. Dit gaf me het idee om een IoT device te maken die de TV uitzet als deze te lang aan staat zonder mensen in de buurt.
+
+![Photo](/Assets/Photo.png)
 
 
+De data die verzameld moet worden is of de tv aan staat en of er mensen in de buurt zijn. Het resultaat moet zijn dat de tv uit gezet wordt als er een tijdje niemand in de buurt is. Dit kunnen we voor elkaar krijgen door een PID of vergelijkbare sensor te gebruiken om de aanwezigheid van de mensen te herkennen en de signalen van de afstandsbediening op te vangen. 
+Uit de gegenereerde data zal een conclusie getrokken moeten worden. Dit gebeurt in de cloud. De uitkomst beslist of de tv te lang aan staat en dus uitgezet moet worden.
+Het uitzetten van de tv kan gedaan worden door het aan/uit signaal met een infrarode led uit te zenden naar de tv.
 
-# Introductie
+In het Word document staan meer details over de keuzes die bij dit project gemaakt zijn. Ook gaat deze dieper in op de technische werking van dit project.
 
+# Data science en IoT
+### Wat is data science
+Data science is in het kort gezegd het waarde creëren uit data. Data zelf is namelijk niet per se nuttig. Met data science worden verbanden gevonden en conclusies getrokken uit data. Vaak worden hier geautomatiseerde systemen bij gemaakt die zelf conclusies kunnen trekken of kunnen voorspellen wat er gaat gebeuren.
 
+### Wat is IoT
+IoT staat voor Internet of Things. Dit staat voor het netwerk van apparaten die aan het internet verbonden zijn. Bij deze term wordt niet alleen maar gesproken over laptops en telefoons maar vooral over de andere apparaten in huis die aan het internet worden verbonden. Bijvoorbeeld je Roomba, weerstationnetje, Amazon Alexa of zelfs het koffiezetapparaat. Er wordt steeds meer informatie gedeeld tussen apparaten.
 
-# Project idee
+### Verband
+Het verband tussen data science en IoT is dat er heel veel data wordt geproduceerd door de IoT producten. Deze data kan heel nuttig zijn. Met data science kan deze data verwerkt worden tot nuttige informatie. Deze informatie kan dan gebruikt worden om acties uit te voeren als reactie op de data.
+Dit project laat je zien hoe je sensor data in de cloud kan opslaan en verwerken.
+
 
 
 

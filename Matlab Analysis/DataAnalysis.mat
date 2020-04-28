@@ -1,0 +1,43 @@
+% Data Science for IoT
+% Daniël van der Drift
+
+% Turn the tv off when the tv is on without people nearby
+
+
+% Replace the [] with channel ID to read data from:
+readChannelID = [];
+% TV state Field ID
+stateFieldID = 1;
+% Movement Field ID
+movementFieldID = 2;
+% Channel Read API Key:
+% If your channel is private, then enter the read API Key between the '' below:
+readAPIKey = '';
+
+% Replace the [] with channel ID to write data to:
+writeChannelID = [];
+% Enter the Write API Key between the '' below:
+writeAPIKey = '';
+
+% Delay in minutes befor turning off
+waitDuration = 30;
+
+
+[state, time] = thingSpeakRead(readChID, 'Fields', stateFieldID);
+movement = thingSpeakRead(readChannelID, 'Fields', movementFieldID, 'NumMinutes', waitDuration, 'ReadKey', readAPIKey);
+
+% Calculate the maximum and minimum temperatures
+[maxMovement,maxMovementIndex] = max(movement); % 1 or 0
+
+display(maxMovement,'Movement for the past 30 minutes is');
+
+
+turnTvOff = 0
+if (maxMovement > 0) && (state == 1)
+	turnTvOff = 1;
+else
+	turnTvOff = 0;
+end
+
+
+thingSpeakWrite(writeChannelID,turnTvOff,'timestamp',time,'WriteKey',writeAPIKey);
