@@ -38,7 +38,7 @@ Accessoires voor de Raspberry pi:
 
 
 ## Raspberry pi
-Installeer een besturingssysteem. Dit doe je door een besturingssysteem op de sd kaart te zetten en deze in de Raspberry pi te steken.
+Installeer een besturingssysteem. Dit doe je door een besturingssysteem op de SD kaart te zetten en deze in de Raspberry pi te steken.
 Voor beginners adviseer ik om noobs te installeren. Hiermee kan je makkelijk verschillende besturingssystemen proberen. Kies bij dit project voor Raspbian.
 Dit zijn instructies om noobs te installeren: https://thepi.io/how-to-install-noobs-on-the-raspberry-pi/
 
@@ -60,14 +60,51 @@ Als de sensoren goed zijn aangesloten en de Teamspeak channels goed zijn ingeste
 ## Matlab analysis
 Matlab Analysis is een app op Teamspeak waarmee de data in de channels verwerkt kan worden. Open Matlab Analysis op Teamspeak > Apps > MATLAB Analysis. Maak een nieuwe lege code aan en copieer de code hieronder in Matlab Analysis.
 ```lang-matlab
-Github markdown
-Code hier
+% Turn the tv off when the tv is on without people nearby
+
+% Replace the [] with channel ID to read data from:
+readChannelID = [];
+% TV state Field ID
+stateFieldID = 1;
+% Movement Field ID
+movementFieldID = 2;
+% Channel Read API Key:
+% If your channel is private, then enter the read API Key between the '' below:
+readAPIKey = '';
+
+% Replace the [] with channel ID to write data to:
+writeChannelID = [];
+% Enter the Write API Key between the '' below:
+writeAPIKey = '';
+
+% Delay in minutes befor turning off
+waitDuration = 30;
+
+
+[state, time] = thingSpeakRead(readChID, 'Fields', stateFieldID);
+movement = thingSpeakRead(readChannelID, 'Fields', movementFieldID, 'NumMinutes', waitDuration, 'ReadKey', readAPIKey);
+
+% Calculate the maximum and minimum temperatures
+[maxMovement,maxMovementIndex] = max(movement); % 1 or 0
+
+display(maxMovement,'Movement for the past 30 minutes is');
+
+
+turnTvOff = 0
+if (maxMovement > 0) && (state == 1)
+	turnTvOff = 1;
+else
+	turnTvOff = 0;
+end
+
+
+thingSpeakWrite(writeChannelID,turnTvOff,'timestamp',time,'WriteKey',writeAPIKey);
 ```
 Vul de 4 variabelen in genaamd readAPIKey, readChannelID, writeAPIKey en writeChannelID.
 De readAPIKey en readChannelID moeten de waarde hebben van de channel van de Incomming data. En de writeAPIKey en writeChannelID moeten de waarde hebben van de channel van de Outgoing data.
 Klik op ‘Sava and Run’ om de code uit te voeren. Deze code wordt dan helaas maar 1 keer uitgevoerd. Om deze code constant uit te voeren en dus up-to-date te houden moeten we TimeControle gebruiken. Dit is een app op Teamspeak die acties uit kan voeren op ingestelde tijdstippen. Ook kan deze app acties herhalen.
 De makkelijkste manier om dit in te stellen is om bij de Matlab Analysis code omlaag te scrollen naar ‘Schedule Actions’ en op ‘TimeControl’ te klikken. Dit brengt je meteen naar een pagina om TimeControl in te stellen op de MatlabAnalysis code.
-Stel deze Timecontrol in zoals op de afbeelding hieronder.
+Stel deze TimeControl in zoals op de afbeelding hieronder.
 ![TimeControl](/Assets/TimeControl.png)
 
-Als alle stappen goed zijn opgevolgd 
+Als alle stappen goed zijn opgevolgd stuurt de Raspberry pi data naar Thingspeak en weer terug om te besluiten of de tv uitgezet kan worden of niet.
