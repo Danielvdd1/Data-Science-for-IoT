@@ -8,7 +8,7 @@ De data die verzameld moet worden is of de tv aan staat en of er mensen in de bu
 Uit de gegenereerde data zal een conclusie getrokken moeten worden. Dit gebeurt in de cloud. De uitkomst beslist of de tv te lang aan staat en dus uitgezet moet worden.
 Het uitzetten van de tv kan gedaan worden door het aan/uit signaal met een infrarode led uit te zenden naar de tv.
 
-In het Word document staan meer details over de keuzes die bij dit project gemaakt zijn. Ook gaat deze dieper in op de technische werking van dit project.
+In het **Word document** in de documenten folder staan meer details over de keuzes die bij dit project gemaakt zijn. Ook gaat deze dieper in op de technische werking van dit project.
 
 # Data science en IoT
 ### Wat is data science
@@ -125,3 +125,7 @@ Stel deze TimeControl in zoals op de afbeelding hieronder.
 ![TimeControl](/Assets/TimeControl.png)
 
 Als alle stappen goed zijn opgevolgd stuurt de Raspberry pi data naar Thingspeak en weer terug om te besluiten of de tv uitgezet kan worden of niet.
+
+
+
+In het **Word document** in de documenten folder staan meer details over de keuzes die bij dit project gemaakt zijn. Ook gaat deze dieper in op de technische werking van dit project.
